@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var choices = ['rock', 'paper','scissors'];
+        function computerPlay() { 
+            return choices[Math.floor(Math.random() * choices.length)];
+        }
+        function playRound(playerSelection, computerSelection) {  
+            if(playerSelection == 'rock' && computerSelection == 'paper' || playerSelection == 'paper' && computerSelection == 'rock') {
+                return {user: playerSelection, computer: computerSelection, result: 'PAPER BEATS ROCK'};
+            }
+            else if(playerSelection == 'paper' && computerSelection == 'scissors' || playerSelection == 'scissors' && computerSelection == 'paper') {
+                return {user: playerSelection, computer: computerSelection, result: 'SCISSORS BEATS PAPER'};
+            }
+            else if(playerSelection == 'rock' && computerSelection == 'scissors' || playerSelection == 'scissors' && computerSelection == 'rock') {
+                return {user: playerSelection, computer: computerSelection, result: 'ROCK BEATS SCISSORS'};
+            }
+            else {
+                return "You chose the same material. Play again";
+            }
+            
+        }
+        var playerScore = 0;
+        var computerScore = 0;
+        function game() {
+            var choice = prompt("Rocks, Paper, Scissors Shoot");
+            var computerSelection = computerPlay();
+            var round = playRound(choice, computerSelection);
+            if(typeof round !== 'undefined' && choices.indexOf(choice) > -1) {
+                console.log(round);
+                if(round.result == "PAPER BEATS ROCK") {
+                    if(choice == 'rock') {
+                        playerScore++;
+                    }
+                    else {
+                        computerScore++;
+                    }
+                }
+                else if(round.result == "SCISSORS BEATS PAPER") {
+                    if(choice == 'scissors') {
+                        playerScore++;
+                    }
+                    else {
+                        computerScore++;
+                    }
+                }
+                else if(round.result == "ROCK BEATS SCISSORS") {
+                    if(choice == 'rock') {
+                        playerScore++;
+                    }
+                    else {
+                        computerScore++;
+                    }
+                }
+            }
+            else {
+                alert("please make a valid selection: Rock, Paper, or Scissors");
+            }
+            
+            if(playerScore == 5) {
+                return "YOU WIN";
+              
+            }
+            else if(computerScore == 5) {
+                return "COMPUTER WINS";
+            }
+
+            if(playerScore < 5 || computerScore < 5) {
+                console.log(playerScore, computerScore)
+                game();
+            }
+        }
+
+        
+    </script>
+</body>
+</html>
